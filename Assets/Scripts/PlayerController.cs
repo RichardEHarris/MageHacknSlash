@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private MasterGameController GC;
+
     public float speed = 2;
     public float jumpHeight = 4;
     public float gravity = -9.81f;
     public Transform groundDetector;
     public LayerMask groundMask;
     public bool grounded;
+
     private Animator anim;
     private Vector2 velocity;
     private Rigidbody2D collision;
     private float jumpCooldown = 0;
-    // Start is called before the first frame update
+    private Player player;
+
     void Start()
     {
+        player = GetComponentInChildren<Player>();
         anim = GetComponent<Animator>();
         collision = GetComponent<Rigidbody2D>();
         velocity = new Vector2();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         grounded = Physics2D.OverlapCircle(groundDetector.position, 0.05f, groundMask);
@@ -56,6 +60,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             anim.SetTrigger("Attack1");
+            player.abilities[0].playEffect();
         }
         //right Click
         if (Input.GetMouseButtonDown(1))

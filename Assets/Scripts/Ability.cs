@@ -17,7 +17,17 @@ public class Ability : MonoBehaviour
     public int manaCost = 0;
     public float cooldown = 1;
 
-    public GameObject AbilityEffect;
+    public GameObject abilityEffect;
+    public GameObject projectile;
+    private Projectile pScript;
+
+    void Start()
+    {
+        projectile = Instantiate(projectile, transform.position, transform.rotation, transform);
+        pScript = projectile.GetComponent<Projectile>();
+        pScript.graphic = abilityEffect;
+        Debug.Log("Loaded Ability: " + abilityName);
+    }
 
     public Ability(AbilityType type, Aspect[] aspects, string name, string id, float damage, float range, int manaCost)
     {
@@ -28,6 +38,11 @@ public class Ability : MonoBehaviour
         this.damage = damage;
         this.range = range;
         this.manaCost = manaCost;
+    }
+
+    public void playEffect()
+    {
+        pScript.Play();
     }
 
     public float GetDamage()

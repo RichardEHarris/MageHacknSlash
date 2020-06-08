@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class MasterGameController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Player player;
+    public AbilityList spellBook;
+    void Awake()
     {
-        
+        //player = GetComponentInChildren<Player>();
+        spellBook = GetComponentInChildren<AbilityList>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
         
     }
