@@ -7,5 +7,8 @@ public class Player : MonoBehaviour
     protected float health;
     protected float mana;
     protected Ability[] abilities = new Ability[4];
-    //TODO Add other stats and stuff
+    float healthRegen;
+    float manaRegen;
+    float cooldownReduction;
+    float manaCostReduction;
 }
