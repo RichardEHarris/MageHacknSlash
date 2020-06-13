@@ -42,9 +42,7 @@ public class Projectile : MonoBehaviour
             }
             float speed = (deltaDuration * points.Count) - index;
             graphicsInstance.transform.localPosition = Vector3.Lerp(startPos, destination, speed);
-            //Debug.Log(graphicsInstance.transform.localPosition);
-            //Debug.Log( index + " , "+ (((duration - playTime) * points.Count) - (index * duration)));
-            Debug.Log(index + " : " + deltaDuration + " : " + speed + " : " + startPos + "->" + destination);
+            //Debug.Log(index + " : " + deltaDuration + " : " + speed + " : " + startPos + "->" + destination);
             playTime -= Time.deltaTime;
             if (playTime <= 0)
             {
