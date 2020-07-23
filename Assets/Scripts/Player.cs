@@ -5,8 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private MasterGameController GC;
-    public float health;
-    public float mana;
+    float health;
+    public float maxHealth = 100;
+    float mana;
+    public float maxMana = 100;
     public Ability[] abilities = new Ability[4];
     public float healthRegen;
     public float manaRegen;
@@ -20,8 +22,14 @@ public class Player : MonoBehaviour
         {
             if (abilities[i])
             {
-                abilities[i] = Instantiate(abilities[i], new Vector3(), new Quaternion(), transform);
+                abilities[i] = Instantiate(abilities[i], transform.position, new Quaternion(), transform);
             }
         }
+    }
+
+    void Start()
+    {
+        health = maxHealth;
+        mana = maxMana;
     }
 }

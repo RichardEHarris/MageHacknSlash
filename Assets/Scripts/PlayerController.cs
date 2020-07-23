@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         player = GetComponentInChildren<Player>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         collision = GetComponent<Rigidbody2D>();
         velocity = new Vector2();
     }
@@ -59,8 +59,11 @@ public class PlayerController : MonoBehaviour
         //Left Click
         if (Input.GetMouseButtonDown(0))
         {
-            anim.SetTrigger("Attack1");
-            player.abilities[0].playEffect();
+            if (player.abilities[0].UseCooldown(true))
+            {
+                anim.SetTrigger("Attack1");
+                player.abilities[0].UseAbility();
+            }
         }
         //right Click
         if (Input.GetMouseButtonDown(1))

@@ -43,7 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a792086a3d0ea95409596dfa37e5410b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 0}
   points:
   - {x: 0, y: 0, z: 0}
   duration: 1
   graphic: {fileID: 5903836282983398563, guid: 75e16094e2637b444947819181060185, type: 3}
+  colliderAOE: 0.5
+  collisionLayers:
+    serializedVersion: 2
+    m_Bits: 10240

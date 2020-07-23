@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Shootable
+  - Enemy
+  - Destructible
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - Lighting
   - Ground
   - Postprocessing
-  - CharacterEntity
-  - 
+  - EnemyEntity
+  - PlayerEntity
   - 
   - 
   - 
