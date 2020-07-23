@@ -25,7 +25,7 @@ PrefabInstance:
     - target: {fileID: 514087376060149889, guid: bde64b3dd5a8d2f459de8f4f15622abc,
         type: 3}
       propertyPath: damage
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 514087376060149889, guid: bde64b3dd5a8d2f459de8f4f15622abc,
         type: 3}
@@ -36,13 +36,13 @@ PrefabInstance:
         type: 3}
       propertyPath: abilityEffect
       value: 
-      objectReference: {fileID: 5903836282983398563, guid: 75e16094e2637b444947819181060185,
+      objectReference: {fileID: 5903836282983398563, guid: cd0ba535734f9ee4dbe35eea1a2c82c2,
         type: 3}
     - target: {fileID: 514087376060149889, guid: bde64b3dd5a8d2f459de8f4f15622abc,
         type: 3}
       propertyPath: projectile
       value: 
-      objectReference: {fileID: 7368002547040679707, guid: b1919b2cbbcc3904faf8a826995b7ccb,
+      objectReference: {fileID: 7368002547040679707, guid: 22a899f76399cd949b94348739ffee34,
         type: 3}
     - target: {fileID: 514087376060149889, guid: bde64b3dd5a8d2f459de8f4f15622abc,
         type: 3}
@@ -51,14 +51,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 514087376060149889, guid: bde64b3dd5a8d2f459de8f4f15622abc,
         type: 3}
+      propertyPath: secondaryDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 514087376060149889, guid: bde64b3dd5a8d2f459de8f4f15622abc,
+        type: 3}
+      propertyPath: hasHitEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 514087376060149889, guid: bde64b3dd5a8d2f459de8f4f15622abc,
+        type: 3}
       propertyPath: abilityProjectile
       value: 
-      objectReference: {fileID: 7368002547040679707, guid: b1919b2cbbcc3904faf8a826995b7ccb,
+      objectReference: {fileID: 7368002547040679707, guid: 22a899f76399cd949b94348739ffee34,
+        type: 3}
+    - target: {fileID: 514087376060149889, guid: bde64b3dd5a8d2f459de8f4f15622abc,
+        type: 3}
+      propertyPath: hitProjectile
+      value: 
+      objectReference: {fileID: 7368002547040679707, guid: 1421ffbc8dcf68844a153188b333161e,
+        type: 3}
+    - target: {fileID: 514087376060149889, guid: bde64b3dd5a8d2f459de8f4f15622abc,
+        type: 3}
+      propertyPath: hitEffect
+      value: 
+      objectReference: {fileID: 5903836282983398563, guid: 2122a0b2acc7c694e9c2ad0affbb18ec,
         type: 3}
     - target: {fileID: 5396847039467815107, guid: bde64b3dd5a8d2f459de8f4f15622abc,
         type: 3}
       propertyPath: m_Name
-      value: Flame Blast
+      value: Fire Ball
       objectReference: {fileID: 0}
     - target: {fileID: 7201926632535763867, guid: bde64b3dd5a8d2f459de8f4f15622abc,
         type: 3}

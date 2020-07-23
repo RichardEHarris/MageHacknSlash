@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2554566682970033131}
   - component: {fileID: -5847827477176352521}
   m_Layer: 0
-  m_Name: None
+  m_Name: AOE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,12 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a792086a3d0ea95409596dfa37e5410b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentAbility: {fileID: 0}
   points:
   - {x: 0, y: 0, z: 0}
-  duration: 1
-  graphic: {fileID: 5903836282983398563, guid: 75e16094e2637b444947819181060185, type: 3}
-  colliderAOE: 0.5
+  duration: 0.5
+  colliderAOE: 1.5
+  onRails: 0
+  stopOnCollision: 0
 --- !u!58 &2554566682970033131
 CircleCollider2D:
   m_ObjectHideFlags: 0

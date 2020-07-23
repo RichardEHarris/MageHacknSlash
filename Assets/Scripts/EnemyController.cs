@@ -17,11 +17,13 @@ public class EnemyController : MonoBehaviour
     public LayerMask groundMask;
 
     public Transform target;
+    public LayerMask targetList;
     float distance = -1;
     public float speed = 50;
     public float prefDistance = 0.5f;
     public float jumpStr = 10;
     public float nextWaypointDistance = 0.5f;
+    public float agroRange = 5f;
 
     bool grounded = true;
 
@@ -42,7 +44,7 @@ public class EnemyController : MonoBehaviour
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 
-    private void Update()
+    void FixedUpdate()
     {
         float movingThreshold = 0.1f;
         if (physObj.velocity.x > movingThreshold || physObj.velocity.x < -movingThreshold)
@@ -53,27 +55,40 @@ public class EnemyController : MonoBehaviour
         {
             anim.SetBool("Moving", false);
         }
-    }
 
-    void FixedUpdate()
-    {
         if (alive)
         {
             grounded = Physics2D.OverlapCircle(groundDetector.position, 0.05f, groundMask);
             anim.SetBool("Grounded", grounded);
-            distance = Vector2.Distance(physObj.position, target.position);
-
-            bool moving = Move();
-            //Attacks if not moving.
-            if (!moving && distance <= attackRange)
+            if (target)
             {
-                attackTimer += Time.deltaTime;
-                Vector2 direction = ((Vector2)target.position - physObj.position).normalized;
-                FaceDirection(direction);
-                if (attackTimer >= attackCooldown)
+                distance = Vector2.Distance(physObj.position, target.position);
+                
+                //Lose Target Agro if too far away (for performance reasons)
+                if (distance > 10)
+                    target = null;
+
+                bool moving = Move();
+                //Attacks if not moving.
+                if (!moving && distance <= attackRange)
                 {
-                    Attack();
-                    attackTimer = 0;
+                    attackTimer += Time.deltaTime;
+                    Vector2 direction = ((Vector2)target.position - physObj.position).normalized;
+                    FaceDirection(direction);
+                    //TODO Add Logic for what attack to do eg. ranged attack or melee.
+                    if (attackTimer >= attackCooldown)
+                    {
+                        Attack();
+                        attackTimer = 0;
+                    }
+                }
+            }
+            else
+            {
+                Collider2D foundTarget = Physics2D.OverlapCircle(transform.position, agroRange, targetList);
+                if (foundTarget)
+                {
+                    target = foundTarget.transform;
                 }
             }
         }
@@ -128,7 +143,7 @@ public class EnemyController : MonoBehaviour
     //TODO Make Enemy Attack actually do something.
     private bool Attack()
     {
-        Debug.Log($"{gameObject.name} is Attacking");
+        //Debug.Log($"{gameObject.name} is Attacking");
         anim.SetTrigger("Attack1");
         return false;
     }
@@ -167,7 +182,7 @@ public class EnemyController : MonoBehaviour
 
     void UpdatePath()
     {
-        if (seeker.IsDone() && target != null)
+        if (alive && seeker.IsDone() && target != null)
         {
             seeker.StartPath(physObj.position, target.position, OnPathComplete);
         }
@@ -184,13 +199,16 @@ public class EnemyController : MonoBehaviour
 
     public float Damage(Player source, float hit)
     {
-        anim.SetTrigger("Hit");
-        health -= hit;
-        if (health <= 0)
+        if (hit > 0)
         {
-            alive = false;
+            anim.SetTrigger("Hit");
+            health -= hit;
+            if (health <= 0)
+            {
+                alive = false;
+            }
+            anim.SetBool("Alive", alive);
         }
-        anim.SetBool("Alive", alive);
         return health;
     }
 

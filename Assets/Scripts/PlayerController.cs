@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         //Left Click
         if (Input.GetMouseButtonDown(0))
         {
-            if (player.abilities[0].UseCooldown(true))
+            if (player.abilities[0] && player.abilities[0].UseCooldown(true))
             {
                 anim.SetTrigger("Attack1");
                 player.abilities[0].UseAbility();
@@ -68,7 +68,11 @@ public class PlayerController : MonoBehaviour
         //right Click
         if (Input.GetMouseButtonDown(1))
         {
-            anim.SetTrigger("Attack2");
+            if (player.abilities[1] && player.abilities[1].UseCooldown(true))
+            {
+                anim.SetTrigger("Attack2");
+                player.abilities[1].UseAbility();
+            }
         }
 
         

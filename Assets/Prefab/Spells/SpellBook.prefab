@@ -45,3 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellBook:
   - {fileID: 2224219230134722393, guid: c3db743aa9a13fb4ab27c5e91cd71790, type: 3}
+  - {fileID: 2224219230134722393, guid: 0fddf5364992107498395c06acef7148, type: 3}

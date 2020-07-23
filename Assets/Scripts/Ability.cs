@@ -14,13 +14,22 @@ public class Ability : MonoBehaviour
     public string id = "AspectsType1";
 
     public float damage = 0;
+    public float secondaryDamage = 0;
     public float range = 0;
     public int manaCost = 0;
     public float cooldown = 1f;
     private float cooldownTime = 0;
 
+    public bool hasHitEffect = false;
+
+    [Tooltip("Particle")]
     public GameObject abilityEffect;
-    public GameObject projectile;
+    [Tooltip("Projectile")]
+    public GameObject abilityProjectile;
+    [Tooltip("Particle")]
+    public GameObject hitEffect;
+    [Tooltip("Projectile")]
+    public GameObject hitProjectile;
 
     void Start()
     {
@@ -42,10 +51,14 @@ public class Ability : MonoBehaviour
 
     public void UseAbility()
     {
-        GameObject p = Instantiate(projectile, transform.position, transform.rotation, transform);
+        GameObject p = Instantiate(abilityProjectile, transform.position, transform.rotation, transform);
         Projectile pScript = p.GetComponent<Projectile>();
-        pScript.graphic = abilityEffect;
-        pScript.parentAbility = this;
+        pScript.Init(this, abilityEffect, GetDamage(), hasHitEffect);
+        if (!pScript.onRails)
+        {
+            p.transform.parent = null;
+            p.transform.localScale = transform.lossyScale;
+        }
     }
 
     public bool UseCooldown(bool useResource)
@@ -63,6 +76,11 @@ public class Ability : MonoBehaviour
     public float GetDamage()
     {
         return damage;
+    }
+
+    public float GetSecondaryDamage()
+    {
+        return secondaryDamage;
     }
 
     public float GetRange()
